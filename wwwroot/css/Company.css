@@ -2,10 +2,11 @@
 * {
     text-decoration: none;
 }
+
 /* Page styling */
 .page {
     padding: 2rem;
- max-width: 95%;
+    max-width: 100%;
     margin-left: 250px;
 }
 
@@ -13,8 +14,8 @@
 .card {
     background: white;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    /* overflow: hidden; */ /* Removed to allow table overflow for responsiveness */
 }
 
 .card-header {
@@ -38,39 +39,59 @@
     padding: 1.5rem;
 }
 
+/* Responsive table container */
+.table-responsive {
+    display: block;
+    overflow-x: auto;
+}
+
 /* Table styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 2rem;
-    font-size: 0.875rem;
+    margin-top: 1.5rem; /* Adjusted margin */
+    font-size: 0.9375rem; /* Slightly larger font size */
+    border-radius: 0.5rem; /* Rounded corners for the table */
+    overflow: hidden; /* Hide overflow for rounded corners */
+}
+
+thead th {
+ border-bottom: 2px solid #d0d0d0; /* Thicker border for header */
 }
 
 th, td {
-    padding: 1rem;
+ padding: 1rem 1.2rem; /* Consistent and slightly adjusted padding */
     text-align: left;
-    border-bottom: 1px solid #e5e7eb;
+ border-right: 1px solid #f0f0f0; /* Add subtle right border */
+}
+td:last-child {
+ border-right: none; /* Remove right border from last cell */
 }
 
 th {
     background-color: #f9fafb;
     color: #374151;
     font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.75rem;
+    text-transform: capitalize; /* Capitalize instead of uppercase */
+    font-size: 0.875rem; /* Slightly larger header font */
     letter-spacing: 0.05em;
 }
 
 tr:hover {
-    background-color: #f9fafb;
+ background-color: #eef2ff; /* Lighter, more interactive hover color */
+    transition: background-color 0.2s ease-in-out; /* Smooth hover transition */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fcfcfc; /* Alternating row color */
 }
 
 /* Button styling */
 .btn {
     display: inline-block;
     /*    padding: 8px 16px;*/
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 1rem; /* Increased font size */
+ font-weight: 600; /* Slightly bolder font weight */
     line-height: 1.9;
     text-align: center;
     align-content: center;
@@ -78,8 +99,8 @@ tr:hover {
     border: 1px solid transparent;
     border-radius: 12px;
     transition: all 0.2s;
-    width: 170px;
-    margin-left: 85%;
+ width: auto; /* Allow button to size based on content */
+    padding: 0.5rem 1rem; /* Adjusted padding */
     text-decoration: none;
 }
 
@@ -93,60 +114,12 @@ tr:hover {
         background-color: #2563eb;
     }
 
-/* Utility classes */
-.space-y-4 > * + * {
-    margin-top: 1rem;
-}
-
-.space-y-6 > * + * {
-    margin-top: 1.5rem;
-}
-
-.flex {
-    display: flex;
-}
-
-.items-center {
-    align-items: center;
-}
-
-.justify-between {
-    justify-content: space-between;
-}
-
-.grid {
-    display: grid;
-}
-
-.grid-cols-1 {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-.gap-6 {
-    gap: 1.5rem;
-}
-
-/* Text styling */
-.text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-}
-
 .font-bold {
     font-weight: 700;
 }
 
 .tracking-tight {
     letter-spacing: -0.025em;
-}
-
-.text-muted-foreground {
-    color: #6b7280;
-}
-
-.text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
 }
 
 .font-medium {

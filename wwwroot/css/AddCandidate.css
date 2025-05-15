@@ -1,63 +1,50 @@
 /* wwwroot/css/AddCandidate.css */
 
-/* Add any specific styles for the Add Candidate page here */
-/* These styles will be in addition to or override styles from AddAdmin.css */
+/* It is recommended to keep this file focused on styles *specific* to the Add Candidate page that are not covered by AddAdmin.css or for fine-tuning. */
 
-/* Example: Adjust form layout for smaller screens */
+/* Add any specific styles for the Add Candidate page here */
+/* These styles are in addition to or override styles from AddAdmin.css */
+
+/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .page-container {
-        margin-left: 0; /* Remove left margin on smaller screens */
-        justify-content: center; /* Center the form */
+        margin-left: 0; /* Remove left margin from shared layout on smaller screens */
+        padding: 1rem; /* Add some padding */
     }
 
-    .admin-form {
-        width: 95%; /* Make form take up more width */
-        padding: 15px;
-    }
-
-    .form-grid {
-        gap: 15px; /* Adjust gap in the grid */
-    }
-
+    /* Ensure form rows within the grid stack on smaller screens */
     .form-row {
-        flex-direction: column; /* Stack form groups vertically */
-        gap: 15px; /* Add gap between stacked form groups */
+        flex-direction: column;
+        gap: 1rem; /* Adjust gap between stacked form groups */
     }
 
+    /* Ensure form groups take full width when stacked */
     .form-group {
-        flex: none; /* Remove flex property when stacked */
-        width: 100%; /* Make form group take full width */
-        margin-bottom: 0; /* Remove bottom margin from form group */
+        width: 100%;
+        margin-bottom: 0; /* Remove default bottom margin as gap is handled by form-row */
     }
 
-    .section-title {
-        font-size: 18px; /* Reduce title font size */
+    /* Adjust grid gap on smaller screens */
+    .form-grid {
+        gap: 1rem;
     }
 
+    /* Adjust form actions layout on smaller screens */
     .form-actions {
-        flex-direction: column; /* Stack buttons vertically */
-        gap: 10px; /* Add gap between stacked buttons */
+        flex-direction: column;
+        gap: 0.75rem; /* Adjust gap between stacked buttons */
         align-items: stretch; /* Stretch buttons to full width */
     }
 
+    /* Ensure buttons are full width on smaller screens */
     .btn {
-        width: 100%; /* Make buttons full width */
+        width: 100%;
         text-align: center;
     }
 }
 
-/* Further adjustments for very small screens */
+/* Further adjustments for very small screens if necessary */
 @media (max-width: 480px) {
-    .admin-form {
-        padding: 10px;
-    }
-
-    .form-section {
-        margin-bottom: 20px;
-        padding-bottom: 15px;
-    }
-
-    .section-title {
-        margin-bottom: 15px;
-    }
+    /* Add any specific styles for extra small screens here */
+}
 }

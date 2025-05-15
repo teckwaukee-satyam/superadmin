@@ -14,11 +14,13 @@
     border-radius: 12px;
     transition: all 0.2s;
     width: 170px;
-    
     text-decoration: none;
 }
 .btn-1 {
     display: inline-block;
+    /* Adjusted for better positioning */
+    margin-bottom: 20px;
+    margin-left: 90%; 
     /*    padding: 8px 16px;*/
     font-size: 14px;
     font-weight: 500;
@@ -28,7 +30,7 @@
     cursor: pointer;
     border: 1px solid transparent;
     border-radius: 12px;
-    transition: all 0.2s;
+    transition: background-color 0.2s ease;
     width: 170px;
     margin-left: 85%;
     text-decoration: none; /* Ensure no text decoration */
@@ -47,6 +49,12 @@
 .btn-secondary {
     background-color: #6c757d;
     color: white;
+    border: 1px solid transparent;
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
 }
 /* Card styles */
 .card {
@@ -83,6 +91,7 @@
 .table-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    margin-top: 1rem; /* Added margin for spacing */
 }
 
 .table {
@@ -108,6 +117,13 @@
         padding: 1rem 1.5rem;
         border-bottom: 1px solid #e5e7eb;
         vertical-align: middle;
+        /* Add this for better responsiveness on small screens */
+        word-break: break-word; 
+    }
+
+    /* Add alternating row colors for better readability */
+    .table tbody tr:nth-child(odd) {
+        background-color: #fefefe;
     }
 
     .table tr:last-child td {
@@ -135,6 +151,7 @@ body {
 /* Page container with padding and max width */
 .page {
     padding: 2rem;
+    /* Adjusted max-width for better use of space on larger screens */
     max-width: 100%;
     margin-left: 250px;
 }

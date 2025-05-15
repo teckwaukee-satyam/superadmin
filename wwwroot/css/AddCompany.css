@@ -5,9 +5,25 @@
 
 /* Example: Media query to adjust form layout on smaller screens */
 @media (max-width: 768px) {
-    .admin-form {
-        width: 95%; /* Make form take up more width on smaller screens */
-        margin-left: auto; /* Center the form */
-        margin-right: auto;
+ .admin-form {
+ width: 95%; /* Make form take up more width on smaller screens */
+ margin-right: auto;
+    }
+
+ .page-container {
+        margin-left: 0; /* Remove left margin on smaller screens */
+        padding: 15px; /* Adjust padding */
+    }    
+
+    .form-section {
+        margin-bottom: 20px; /* Adjust space between sections */
+    }
+
+    .form-grid {
+        gap: 15px; /* Adjust gap in the grid */
+    }
+
+    .form-row {
+        flex-direction: column; /* Stack form rows vertically */
     }
 }
