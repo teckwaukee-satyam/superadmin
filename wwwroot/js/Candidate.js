@@ -1,85 +1,46 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
-    // Get modal elements
-    const addCandidateBtn = document.getElementById('add-candidate-btn');
-    const modal = document.getElementById('add-candidate-modal');
-    const closeBtn = document.querySelector('.close');
-    const addCandidateForm = document.getElementById('add-candidate-form');
+document.addEventListener('DOMContentLoaded', function () {
+    const editDeleteModal = document.getElementById('editDeleteModal');
+    const closeModalButton = document.querySelector('.modal .close');
     const candidateTableBody = document.getElementById('candidate-table-body');
 
-    // Show modal when Add Candidate button is clicked
-    addCandidateBtn.addEventListener('click', function () {
-        modal.classList.add('show');
-    });
+    // Function to show the modal
+    function showModal() {
+        editDeleteModal.classList.add('show');
+    }
 
-    // Hide modal when close button is clicked
-    closeBtn.addEventListener('click', function () {
-        modal.classList.remove('show');
-    });
+    // Function to hide the modal
+    function hideModal() {
+        editDeleteModal.classList.remove('show');
+    }
 
-    // Hide modal when clicking outside the modal content
-    modal.addEventListener('click', function (e) {
-        if (e.target === modal) {
-            modal.classList.remove('show');
+    // Event listener for closing the modal
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', hideModal);
+    }
+
+    // Close the modal if the user clicks outside of it
+    window.addEventListener('click', function (event) {
+        if (event.target === editDeleteModal) {
+            hideModal();
         }
     });
 
-    // Handle form submission
-    addCandidateForm.addEventListener('submit', function (e) {
-        e.preventDefault();
+    // Event delegation for edit and delete buttons
+    if (candidateTableBody) {
+        candidateTableBody.addEventListener('click', function (event) {
+            const target = event.target;
 
-        // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const location = document.getElementById('location').value;
-
-        // Create new table row
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-                    <td>${name}</td>
-                    <td>${email}</td>
-                    <td>${phone}</td>
-                    <td>${location}</td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn btn-edit action-btn">Edit</button>
-                            <button class="btn btn-delete action-btn">Delete</button>
-                        </div>
-                    </td>
-                `;
-
-        // Add row to table
-        candidateTableBody.appendChild(newRow);
-
-        // Reset form and close modal
-        addCandidateForm.reset();
-        modal.classList.remove('show');
-
-        // Add event listeners to new buttons
-        addEventListenersToButtons();
-    });
-
-    // Add event listeners to existing buttons
-    function addEventListenersToButtons() {
-        // Edit buttons
-        document.querySelectorAll('.btn-edit').forEach(btn => {
-            btn.addEventListener('click', function () {
-                const row = this.closest('tr');
-                const cells = row.querySelectorAll('td');
-                alert(`Editing candidate: ${cells[0].textContent}`);
-            });
-        });
-
-        // Delete buttons
-        document.querySelectorAll('.btn-delete').forEach(btn => {
-            btn.addEventListener('click', function () {
-                if (confirm('Are you sure you want to delete this candidate?')) {
-                    this.closest('tr').remove();
-                }
-            });
+            if (target.classList.contains('btn-edit')) {
+                const candidateId = target.dataset.id;
+                console.log('Edit button clicked for candidate ID:', candidateId);
+                // In a real application, you would populate the modal with candidate data here
+                showModal();
+            } else if (target.classList.contains('btn-delete')) {
+                const candidateId = target.dataset.id;
+                console.log('Delete button clicked for candidate ID:', candidateId);
+                // In a real application, you would populate the modal for delete confirmation here
+                showModal(); // You might want a separate confirmation modal
+            }
         });
     }
-
-    // Initialize event listeners
-    addEventListenersToButtons();
 });
