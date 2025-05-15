@@ -1,0 +1,63 @@
+/* wwwroot/css/AddCandidate.css */
+
+/* Add any specific styles for the Add Candidate page here */
+/* These styles will be in addition to or override styles from AddAdmin.css */
+
+/* Example: Adjust form layout for smaller screens */
+@media (max-width: 768px) {
+    .page-container {
+        margin-left: 0; /* Remove left margin on smaller screens */
+        justify-content: center; /* Center the form */
+    }
+
+    .admin-form {
+        width: 95%; /* Make form take up more width */
+        padding: 15px;
+    }
+
+    .form-grid {
+        gap: 15px; /* Adjust gap in the grid */
+    }
+
+    .form-row {
+        flex-direction: column; /* Stack form groups vertically */
+        gap: 15px; /* Add gap between stacked form groups */
+    }
+
+    .form-group {
+        flex: none; /* Remove flex property when stacked */
+        width: 100%; /* Make form group take full width */
+        margin-bottom: 0; /* Remove bottom margin from form group */
+    }
+
+    .section-title {
+        font-size: 18px; /* Reduce title font size */
+    }
+
+    .form-actions {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px; /* Add gap between stacked buttons */
+        align-items: stretch; /* Stretch buttons to full width */
+    }
+
+    .btn {
+        width: 100%; /* Make buttons full width */
+        text-align: center;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    .admin-form {
+        padding: 10px;
+    }
+
+    .form-section {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+
+    .section-title {
+        margin-bottom: 15px;
+    }
+}

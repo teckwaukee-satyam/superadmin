@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model SuperAdminPanel.Pages.CandidateModel
 @{
 }
@@ -7,8 +7,8 @@
 
 <div class="container">
     <h1>Candidate Management</h1>
-    <button id="add-candidate-btn" class="btn btn-primary"> 
-    <a asp-page="/AddCandidate">Add Candidate</a>
+ <button id="add-candidate-btn" class="btn btn-primary">
+ <a asp-page="/AddCandidate" class="btn-link">Add Candidate</a>
     </button>
     <table id="candidate-table" class="table">
         <thead>
@@ -21,20 +21,43 @@
             </tr>
         </thead>
         <tbody id="candidate-table-body">
-            <!-- Sample data -->
-            <tr>
-                <td>John Doe</td>
-                <td>john@example.com</td>
-                <td>555-123-4567</td>
-                <td>New York</td>
+ @foreach (var candidate in Model.Candidates)
+            {
+ <tr>
+ <td>@candidate.Name</td>
+ <td>@candidate.Email</td>
+ <td>@candidate.Phone</td>
+ <td>@candidate.Location</td>
                 <td>
-                    <button class="btn btn-edit">Edit</button>
-                    <button class="btn btn-delete">Delete</button>
+ <button class="btn btn-edit" data-id="@candidate.Id">Edit</button>
+ <button class="btn btn-delete" data-id="@candidate.Id">Delete</button>
                 </td>
             </tr>
+            }
         </tbody>
     </table>
 </div>
 
+<!-- Edit/Delete Modal -->
+<div id="candidateModal" class="modal">
+ <div class="modal-content">
+ <div class="modal-header">
+ <h2 id="modalTitle">Edit Candidate</h2>
+ <span class="close">&times;</span>
+ </div>
+ <div class="modal-body">
+ <!-- Form for editing candidate -->
+ <div class="form-group">
+ <label for="editCandidateName">Name:</label>
+ <input type="text" id="editCandidateName" class="form-control">
+ </div>
+            <!-- Add other candidate fields here -->
+ </div>
+ <div class="modal-footer">
+ <button class="btn btn-secondary close">Cancel</button>
+ <button class="btn btn-primary" id="saveCandidateBtn">Save</button>
+ </div>
+ </div>
+</div>
 
 <script src="~/js/candidate.js"></script>

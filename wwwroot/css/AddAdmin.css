@@ -1,4 +1,4 @@
-﻿.page-container {
+.page-container {
     max-width: 100%;
     margin: 0 auto;
     display:flex;
@@ -166,6 +166,13 @@ select.form-input {
     margin-right: 8px;
 }
 
+#imagePreview {
+    display: none; /* Initially hidden */
+    max-width: 150px;
+    height: auto;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+}
 /* Additional styles for Add Company page */
 .website-input-container {
     position: relative;
@@ -193,4 +200,22 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .page-container {
+        margin-left: 0;
+        padding: 15px;
+        justify-content: center;
+    }
+
+    .admin-form {
+        width: 100%;
+        height: auto;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
 }

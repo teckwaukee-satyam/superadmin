@@ -1,1 +1,13 @@
-﻿
+/* wwwroot/css/AddCompany.css */
+
+/* Add styles specific to the Add Company page here if needed.
+   It's recommended to leverage the styles from AddAdmin.css for consistency. */
+
+/* Example: Media query to adjust form layout on smaller screens */
+@media (max-width: 768px) {
+    .admin-form {
+        width: 95%; /* Make form take up more width on smaller screens */
+        margin-left: auto; /* Center the form */
+        margin-right: auto;
+    }
+}

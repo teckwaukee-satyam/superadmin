@@ -1,11 +1,11 @@
-﻿/* Company.css */
+/* Company.css */
 * {
     text-decoration: none;
 }
 /* Page styling */
 .page {
     padding: 2rem;
-    max-width: 100%;
+ max-width: 95%;
     margin-left: 250px;
 }
 
@@ -215,4 +215,17 @@ tr:hover {
     }
 .page {
     margin-left:250px;
+}
+
+@media (max-width: 768px) {
+    .page {
+        margin-left: 0;
+        padding: 1rem;
+   }
+
+    .btn {
+        width: 100%;
+        margin-left: 0;
+        display: block;
+   }
 }

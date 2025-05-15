@@ -1,4 +1,4 @@
-﻿* {
+* {
     text-decoration: none;
 }
 .btn {
@@ -31,7 +31,7 @@
     transition: all 0.2s;
     width: 170px;
     margin-left: 85%;
-    text-decoration: none;
+    text-decoration: none; /* Ensure no text decoration */
 }
 
 .btn-primary {
@@ -43,6 +43,11 @@
     .btn-primary:hover {
         background-color: #2563eb;
     }
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
 /* Card styles */
 .card {
     background-color: white;
@@ -87,7 +92,7 @@
     line-height: 1.25rem;
     text-align: left;
 }
-
+/* Table header styles */
     .table th {
         background-color: #f9fafb;
         color: #6b7280;
@@ -98,6 +103,7 @@
         font-size: 0.75rem;
     }
 
+/* Table data styles */
     .table td {
         padding: 1rem 1.5rem;
         border-bottom: 1px solid #e5e7eb;
@@ -108,6 +114,7 @@
         border-bottom: none;
     }
 
+/* Body and overall layout styles */
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -119,14 +126,13 @@ body {
 }
 
 /* Main content wrapper */
-.main-content {
+.main-content { /* Adjusted margin for sidebar */
     margin-left: 250px;
     flex: 1;
-    /*    transition: margin-left 0.3s ease;*/
     min-height: 100vh;
 }
 
-/* Page container */
+/* Page container with padding and max width */
 .page {
     padding: 2rem;
     max-width: 100%;
@@ -134,41 +140,48 @@ body {
 }
 
 /* Responsive styles */
+/* Adjust layout for smaller screens (less than 1200px) */
 @media (max-width: 1199.98px) {
     .sidenav {
         transform: translateX(-100%);
     }
-
+    /* Show sidebar when visible class is added */
         .sidenav.visible {
             transform: translateX(0);
         }
-
+    /* Remove left margin from main content when sidebar is hidden */
     .main-content {
         margin-left: 0;
     }
 }
 
+/* Styles for medium screens and larger (768px and up) */
 @media (min-width: 768px) {
+    /* Use a 2-column grid for elements with this class */
     .md\:grid-cols-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
+/* Styles for small screens (less than 768px) */
 @media (max-width: 767.98px) {
+    /* Reduce overall page padding */
     .page {
         padding: 1rem;
     }
 
+    /* Reduce padding in card header and content */
     .card-header,
     .card-content {
         padding: 1rem;
     }
 
+    /* Reduce padding in table headers and data cells */
     .table th,
     .table td {
         padding: 0.75rem;
     }
-
+    /* Adjust dialog content for small screens */
     .dialog-content {
         max-height: 80vh;
         margin: 1rem;

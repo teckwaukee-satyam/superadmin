@@ -1,11 +1,10 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     // Dialog elements
     const addCompanyInfoBtn = document.getElementById('addCompanyInfoBtn');
     const addCompanyInfoDialog = document.getElementById('addCompanyInfoDialog');
-    const cancelAddCompanyInfo = document.getElementById('cancelAddCompanyInfo');
+    const cancelAddCompanyInfoBtn = document.getElementById('cancelAddCompanyInfo');
     const addCompanyForm = document.getElementById('add-company-form');
     const dialogOverlay = document.querySelector('.dialog-overlay');
-
     // Open dialog
     addCompanyInfoBtn.addEventListener('click', function () {
         addCompanyInfoDialog.style.display = 'block';
@@ -21,8 +20,8 @@
     }
 
     // Close dialog handlers
-    cancelAddCompanyInfo.addEventListener('click', closeDialog);
-    dialogOverlay.addEventListener('click', closeDialog);
+ cancelAddCompanyInfoBtn.addEventListener('click', closeDialog);
+    dialogOverlay?.addEventListener('click', closeDialog); // Use optional chaining for safety
 
     // Prevent dialog close when clicking inside content
     document.querySelector('.dialog-content').addEventListener('click', function (e) {
@@ -35,16 +34,16 @@
 
         // Get form data
         const formData = new FormData(addCompanyForm);
-        const companyData = {
-            name: formData.get('name'),
-            industry: formData.get('industry'),
-            founded: formData.get('founded'),
-            website: formData.get('website'),
-            email: formData.get('email'),
-            phone: formData.get('phone'),
-            address: formData.get('address')
-        };
+        // Create an object from form entries
+        const companyData = Object.fromEntries(formData.entries());
 
+        // Basic form validation (can be expanded)
+        if (!companyData.name || !companyData.email) {
+            alert('Please fill in company name and email.');
+            return; // Stop execution if validation fails
+        }
+
+        // NOTE: In a real application, you would send this data to the server here
         // Update the UI with new data
         document.getElementById('companyName').textContent = companyData.name;
         document.getElementById('companyIndustry').textContent = companyData.industry;

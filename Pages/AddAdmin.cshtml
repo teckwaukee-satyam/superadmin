@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model SuperAdminPanel.Pages.AddAdminModel
 @{
     ViewData["Title"] = "Add New Administrator";
@@ -81,6 +81,7 @@
                         <div class="form-group">
                             <label asp-for="AdminInput.ProfileImage" class="form-label">Profile Image</label>
                             <input asp-for="AdminInput.ProfileImage" type="file" accept="image/*" class="form-input" />
+                            <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 150px; margin-top: 10px;" />
                             <p class="form-hint">Maximum file size: 5MB</p>
                             <span asp-validation-for="AdminInput.ProfileImage" class="text-danger"></span>
                         </div>
@@ -126,6 +127,23 @@
                             alert('Image size must be less than 5MB');
                             this.value = '';
                         }
+                    }
+                });
+
+                // Image preview
+                const imagePreview = document.getElementById('imagePreview');
+                fileInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        const reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            imagePreview.src = e.target.result;
+                            imagePreview.style.display = 'block';
+                        }
+
+                        reader.readAsDataURL(this.files[0]);
+                    } else {
+                        imagePreview.style.display = 'none';
                     }
                 });
             }

@@ -1,14 +1,14 @@
-﻿@page
+@page
 @model SuperAdminPanel.Pages.AdminModel
 @{
+    ViewData["Title"] = "Admin Management";
 }
 
-<link rel="stylesheet" href="~/css/Admin.css">
-<body>
-    <section id="admin-page" class="page">
-        <div class="space-y-6">
-            
+<section id="admin-page" class="container mt-4">
+    <h1 class="text-center mb-4">Admin Management</h1>
 
+    <div class="row">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <div>
@@ -16,10 +16,8 @@
                         <p class="card-description">
                             A list of all administrators in your company.
                         </p>
-                        <button id="add-candidate-btn" class="btn-1 btn-primary">
-                            <a asp-page="/AddAdmin">
-                                Add Admin
-                            </a>
+                        <button id="add-admin-btn" class="btn btn-primary mt-2">
+                            <a asp-page="/AddAdmin" class="text-white text-decoration-none">Add Admin</a>
                         </button>
                     </div>
                 </div>
@@ -34,8 +32,7 @@
                                     <th>Employee ID</th>
                                     <th>Designation</th>
                                     <th>Office Address</th>
-                                    <th>Button</th>
-
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -47,36 +44,26 @@
                                     <td>EMP-1001</td>
                                     <td>Marketing Manager</td>
                                     <td>123 Main St, New York</td>
+                                    <td>Active</td>
                                     <td>
-                                        <button class="btn btn-icon btn-sm">
-                                           Activate
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-icon btn-sm">
+                                        <button class="btn btn-sm btn-outline-primary me-2">
                                             <i class="ri-edit-line"></i>
                                         </button>
-                                     </td>
+                                        <button class="btn btn-sm btn-outline-danger">
+                                            <i class="ri-delete-bin-line"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="font-medium">John Doe</td>
                                     <td>john@example.com</td>
                                     <td>+9876543210</td>
-                                    <td>EMP-1002</td>
-                                    <td>CTO</td>
-                                    <td>456 Tech Ave, San Francisco</td>
-                                     <td>
-                                        <button class="btn btn-icon btn-sm">
-                                         Deactivate
-                                        </button> </td>
+                                    <td>EMP-1002</td>                                    <td>CTO</td>
+                                    <td>456 Tech Ave, San Francisco</td>                                     <td>Inactive</td>
                                     <td>
-                                        <button class="btn btn-icon btn-sm">
+                                        <button class="btn btn-sm btn-outline-primary me-2">
                                             <i class="ri-edit-line"></i>
                                         </button>
-                                       </td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                     <div class="mt-4 text-sm text-muted-foreground" id="Admin-count">
                         Showing 2 administrators
@@ -85,9 +72,8 @@
             </div>
         </div>
 
-        <!-- Add Admin Dialog -->
-       
     </section>
 
-   
-</body>
+@section Scripts {
+    @* Add any page-specific scripts here *@
+}
