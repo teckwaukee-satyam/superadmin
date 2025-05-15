@@ -4,17 +4,16 @@
 }
 
 /* Page styling */
-.page {
-    padding: 2rem;
-    max-width: 100%;
-    margin-left: 250px;
-}
+/* Removed specific page margin here, will handle responsiveness in media queries */
 
 /* Card styling */
 .card {
     background: white;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* More subtle shadow */
+    overflow: hidden; /* Ensure rounded corners are applied */
+    margin-bottom: 20px; /* Add bottom margin for spacing */
+    border: 1px solid #e0e0e0; /* Add a subtle border */
     /* overflow: hidden; */ /* Removed to allow table overflow for responsiveness */
 }
 
@@ -36,62 +35,77 @@
 }
 
 .card-content {
-    padding: 1.5rem;
+    padding: 1.5rem; /* Consistent padding */
 }
 
 /* Responsive table container */
 .table-responsive {
     display: block;
     overflow-x: auto;
+    width: 100%; /* Ensure container takes full width */
+    -webkit-overflow-scrolling: touch; /* Improve scrolling on touch devices */
 }
 
 /* Table styling */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1.5rem; /* Adjusted margin */
-    font-size: 0.9375rem; /* Slightly larger font size */
-    border-radius: 0.5rem; /* Rounded corners for the table */
-    overflow: hidden; /* Hide overflow for rounded corners */
+    /* Removed specific margin, font size, and rounded corners from table */
 }
 
 thead th {
- border-bottom: 2px solid #d0d0d0; /* Thicker border for header */
+    border-bottom: 2px solid #d0d0d0; /* Thicker border for header */
 }
 
 th, td {
- padding: 1rem 1.2rem; /* Consistent and slightly adjusted padding */
+    padding: 1rem 1.2rem; /* Consistent and slightly adjusted padding */
     text-align: left;
- border-right: 1px solid #f0f0f0; /* Add subtle right border */
+    border-bottom: 1px solid #e0e0e0; /* Consistent bottom border */
 }
 td:last-child {
- border-right: none; /* Remove right border from last cell */
+    /* Removed right border from last cell */
 }
 
 th {
     background-color: #f9fafb;
     color: #374151;
     font-weight: 600;
-    text-transform: capitalize; /* Capitalize instead of uppercase */
+    text-transform: uppercase; /* Keep uppercase for header */
     font-size: 0.875rem; /* Slightly larger header font */
     letter-spacing: 0.05em;
+    border-right: 1px solid #e0e0e0; /* Add subtle right border to header */
+}
+th:last-child {
+    border-right: none; /* Remove right border from last header cell */
 }
 
 tr:hover {
- background-color: #eef2ff; /* Lighter, more interactive hover color */
+    background-color: #f5f5f5; /* Lighter, more interactive hover color */
     transition: background-color 0.2s ease-in-out; /* Smooth hover transition */
 }
 
 tbody tr:nth-child(even) {
-    background-color: #fcfcfc; /* Alternating row color */
+    background-color: #fefefe; /* Alternating row color */
+}
+
+tbody tr:last-child td {
+    border-bottom: none; /* Remove bottom border from last row */
+}
+
+/* Body and overall layout styles */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f7f6; /* Updated background color */
 }
 
 /* Button styling */
 .btn {
-    display: inline-block;
-    /*    padding: 8px 16px;*/
     font-size: 1rem; /* Increased font size */
- font-weight: 600; /* Slightly bolder font weight */
     line-height: 1.9;
     text-align: center;
     align-content: center;
@@ -99,8 +113,9 @@ tbody tr:nth-child(even) {
     border: 1px solid transparent;
     border-radius: 12px;
     transition: all 0.2s;
- width: auto; /* Allow button to size based on content */
+    width: auto; /* Allow button to size based on content */
     padding: 0.5rem 1rem; /* Adjusted padding */
+    font-weight: 500; /* Consistent font weight */
     text-decoration: none;
 }
 
@@ -113,6 +128,10 @@ tbody tr:nth-child(even) {
     .btn-primary:hover {
         background-color: #2563eb;
     }
+
+#add-company-btn {
+    margin-bottom: 20px; /* Add margin below the button */
+}
 
 .font-bold {
     font-weight: 700;
@@ -144,61 +163,48 @@ tbody tr:nth-child(even) {
     font-size: 1rem;
 }
 .company-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-family: Arial, sans-serif;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* Removed old company-table styles */
 }
 
-    .company-table th {
-        background-color: #f8f9fa;
-        color: #333;
-        font-size: 1.2em;
-        padding: 15px;
-        text-align: left;
-        border-bottom: 2px solid #dee2e6;
-    }
-
-    .company-table td {
-        padding: 12px 15px;
-        border-bottom: 1px solid #dee2e6;
-        vertical-align: top;
-    }
-
-    .company-table .section-header {
-        background-color: #f1f1f1;
-        font-weight: bold;
-        color: #333;
-        padding: 10px 15px;
-    }
-
-    .company-table .field-name {
-        font-weight: 600;
-        color: #555;
-        width: 30%;
-    }
-
-    .company-table tr:last-child td {
-        border-bottom: none;
-    }
-
-    .company-table tr:hover td {
-        background-color: #f5f5f5;
-    }
+/* Page container with padding and max width */
 .page {
-    margin-left:250px;
+    padding: 2rem;
+    max-width: 100%;
+    /* Removed margin-left here, handle with media queries */
 }
+
+/* Responsive styles */
+/* Adjust layout for screens larger than 768px */
+@media (min-width: 768px) {
+    .page {
+        margin-left: 250px; /* Add left margin for sidebar on larger screens */
+    }
+
+    /* Table stacking on smaller screens - alternative approach */
+    /* You could add a class to your table and style it here */
+    /* For example, if you add class="stackable-table" to your table: */
+    /*.stackable-table {
+        ... add styles to transform table layout on small screens ...
+    }*/
+}
+
 
 @media (max-width: 768px) {
+    /* Remove left margin from main content */
+    .main-content { /* Assuming you have a .main-content wrapper */
+        margin-left: 0;
+    }
+
+    /* Adjust page padding */
     .page {
         margin-left: 0;
         padding: 1rem;
    }
 
+    /* Make add button full width and remove margin-left */
     .btn {
         width: 100%;
-        margin-left: 0;
+        margin-left: 0 !important; /* Use !important to override potential inline styles */
         display: block;
    }
 }

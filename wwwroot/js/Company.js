@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Helper function to display validation errors
+    function displayError(fieldId, message) {
+        const errorElement = document.getElementById(`${fieldId}-error`);
+        if (errorElement) {
+            errorElement.textContent = message;
+        }
+    }
+
+    // Helper function to clear validation errors
     // Dialog elements
     const addCompanyInfoBtn = document.getElementById('addCompanyInfoBtn');
     const addCompanyInfoDialog = document.getElementById('addCompanyInfoDialog');
@@ -37,9 +46,26 @@ document.addEventListener('DOMContentLoaded', function () {
         // Create an object from form entries
         const companyData = Object.fromEntries(formData.entries());
 
+        // Clear previous errors
+        displayError('name', '');
+        displayError('email', '');
+
+        let isValid = true;
+
         // Basic form validation (can be expanded)
-        if (!companyData.name || !companyData.email) {
-            alert('Please fill in company name and email.');
+        if (!companyData.name) {
+            displayError('name', 'Company name is required.');
+            isValid = false;
+        }
+        if (!companyData.email) {
+            displayError('email', 'Email is required.');
+            isValid = false;
+        } else if (!/\S+@\S+\.\S+/.test(companyData.email)) { // Basic email format check
+            displayError('email', 'Please enter a valid email address.');
+            isValid = false;
+        }
+
+        if (!isValid) {
             return; // Stop execution if validation fails
         }
 

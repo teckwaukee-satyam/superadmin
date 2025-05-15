@@ -1,22 +1,24 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     // Toggle sidebar on mobile
     const iconSidenav = document.getElementById('iconSidenav');
     const sidenav = document.getElementById('sidenav-main');
     const mainContent = document.querySelector('.main-content');
 
-    if (iconSidenav && sidenav) {
-        iconSidenav.addEventListener('click', function () {
-            sidenav.classList.toggle('visible');
-
-            // On mobile, adjust main content when sidebar is visible
+    // Function to toggle sidebar visibility and adjust main content
+    function toggleSidebar() {
+ sidenav.classList.toggle('visible');
+        // Adjust main content margin only if mainContent exists
+        if (mainContent) {
             if (window.innerWidth < 992) {
-                if (sidenav.classList.contains('visible')) {
-                    mainContent.style.marginLeft = '250px';
-                } else {
-                    mainContent.style.marginLeft = '0';
-                }
+ mainContent.style.marginLeft = sidenav.classList.contains('visible') ? '250px' : '0';
+            } else {
+                mainContent.style.marginLeft = '250px'; // Keep margin on larger screens when visible
             }
-        });
+        }
+    }
+
+    if (iconSidenav && sidenav) {
+ iconSidenav.addEventListener('click', toggleSidebar);
     }
 
     // Handle navigation link clicks
@@ -36,30 +38,34 @@
             this.classList.add('active');
 
             // Close sidebar on mobile after clicking a link
-            if (window.innerWidth < 992) {
+            if (window.innerWidth < 992 && sidenav.classList.contains('visible')) {
                 sidenav.classList.remove('visible');
-                mainContent.style.marginLeft = '0';
+                if (mainContent) {
+ mainContent.style.marginLeft = '0';
+                }
             }
         });
     });
 
     // Close sidebar when clicking outside on mobile
     document.addEventListener('click', function (e) {
-        if (window.innerWidth < 992 &&
-            sidenav.classList.contains('visible') &&
-            !e.target.closest('#sidenav-main') &&
-            e.target !== iconSidenav) {
-            sidenav.classList.remove('visible');
-            mainContent.style.marginLeft = '0';
+        // Ensure iconSidenav and sidenav exist before proceeding
+        if (iconSidenav && sidenav) {
+            if (window.innerWidth < 992 &&
+ sidenav.classList.contains('visible') &&
+ !sidenav.contains(e.target) && // Check if click is outside the sidebar
+ !iconSidenav.contains(e.target)) // Check if click is not on the toggle icon itself
+ {
+ toggleSidebar(); // Use the toggle function to hide and adjust margin
+            }
         }
     });
 
     // Adjust layout on window resize
     window.addEventListener('resize', function () {
-        if (window.innerWidth >= 992) {
+        // Ensure mainContent exists before adjusting margin
+        if (mainContent && window.innerWidth >= 992) {
             mainContent.style.marginLeft = '250px';
-        } else if (!sidenav.classList.contains('visible')) {
-            mainContent.style.marginLeft = '0';
         }
     });
 
@@ -69,7 +75,10 @@
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === path) {
-                link.classList.add('active');
+                // Add active class to the direct match or if a root page matches a link
+                if (link.getAttribute('href') === path || (path === '/' && link.getAttribute('href') === '/')) {
+ link.classList.add('active');
+                }
             }
         });
     }

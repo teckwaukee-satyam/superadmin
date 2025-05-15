@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Event listener for closing the modal
-    if (closeModalButton) {
+    if (closeModalButton && editDeleteModal) {
         closeModalButton.addEventListener('click', hideModal);
     }
 

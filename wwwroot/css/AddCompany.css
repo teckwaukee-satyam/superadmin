@@ -5,10 +5,11 @@
 
 /* Example: Media query to adjust form layout on smaller screens */
 @media (max-width: 768px) {
- .admin-form {
+    .admin-form {
  width: 95%; /* Make form take up more width on smaller screens */
+ margin-left: auto; /* Center the form */
  margin-right: auto;
-    }
+ }
 
  .page-container {
         margin-left: 0; /* Remove left margin on smaller screens */
@@ -26,4 +27,28 @@
     .form-row {
         flex-direction: column; /* Stack form rows vertically */
     }
+}
+
+/* Adjustments for specific elements on Add Company page */
+.website-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.website-prefix {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+.website-input-container .form-input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-group.full-width {
+    width: 100%; /* Ensure the address textarea takes full width when stacked */
 }
