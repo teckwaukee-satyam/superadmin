@@ -1,0 +1,134 @@
+﻿@page
+@model SuperAdminPanel.Pages.AddAdminModel
+@{
+    ViewData["Title"] = "Add New Administrator";
+}
+
+<link rel="stylesheet" href="~/css/AddAdmin.css">
+
+<div class="page-container">
+    @* <header class="page-header"> *@
+    @*     <h1>Add New Administrator</h1> *@
+    @*     <p class="page-description"> *@
+    @*         Enter the details of the new administrator. Click save when you're done. *@
+    @*     </p> *@
+    @* </header> *@
+
+    <main class="page-content">
+        <form id="addAdminForm" method="post" enctype="multipart/form-data" class="admin-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-section">
+                <h2 class="section-title">Personal Details</h2>
+                <div class="form-grid">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label asp-for="AdminInput.FullName" class="form-label">Name</label>
+                            <input asp-for="AdminInput.FullName" class="form-input" placeholder="Enter full name" />
+                            <span asp-validation-for="AdminInput.FullName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="AdminInput.Role" class="form-label">Role</label>
+                            <select asp-for="AdminInput.Role" class="form-input" asp-items="Model.RoleOptions">
+                                <option value="">Select Role</option>
+                            </select>
+                            <span asp-validation-for="AdminInput.Role" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="AdminInput.Email" class="form-label">Email</label>
+                            <input asp-for="AdminInput.Email" type="email" class="form-input" placeholder="Enter email address" />
+                            <span asp-validation-for="AdminInput.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="section-title">Additional Information</h2>
+                <div class="form-grid">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label asp-for="AdminInput.WhatsAppNumber" class="form-label">WhatsApp Number</label>
+                            <input asp-for="AdminInput.WhatsAppNumber" type="tel" class="form-input" placeholder="+1234567890" />
+                            <span asp-validation-for="AdminInput.WhatsAppNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="AdminInput.EmployeeId" class="form-label">Employee ID</label>
+                            <input asp-for="AdminInput.EmployeeId" class="form-input" placeholder="EMP-XXXX" />
+                            <span asp-validation-for="AdminInput.EmployeeId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="AdminInput.Designation" class="form-label">Designation</label>
+                            <input asp-for="AdminInput.Designation" class="form-input" placeholder="e.g., HR Manager" />
+                            <span asp-validation-for="AdminInput.Designation" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label asp-for="AdminInput.OfficeAddress" class="form-label">Office Address</label>
+                            <textarea asp-for="AdminInput.OfficeAddress" class="form-input" rows="3"
+                                      placeholder="Enter full office address"></textarea>
+                            <span asp-validation-for="AdminInput.OfficeAddress" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label asp-for="AdminInput.ProfileImage" class="form-label">Profile Image</label>
+                            <input asp-for="AdminInput.ProfileImage" type="file" accept="image/*" class="form-input" />
+                            <p class="form-hint">Maximum file size: 5MB</p>
+                            <span asp-validation-for="AdminInput.ProfileImage" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <a asp-page="/Admin/List" class="btn btn-outline">Cancel</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="ri-save-line mr-2"></i>
+                    Save Admin
+                </button>
+            </div>
+        </form>
+    </main>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Client-side validation enhancements
+            const whatsappInput = document.querySelector('#AdminInput_WhatsAppNumber');
+            if (whatsappInput) {
+                whatsappInput.addEventListener('blur', function() {
+                    const whatsapp = this.value;
+                    if (whatsapp && !/^\+?[1-9]\d{1,14}$/.test(whatsapp)) {
+                        this.style.borderColor = 'red';
+                    } else {
+                        this.style.borderColor = '#ddd';
+                    }
+                });
+            }
+
+            // File size validation
+            const fileInput = document.querySelector('#AdminInput_ProfileImage');
+            if (fileInput) {
+                fileInput.addEventListener('change', function() {
+                    if (this.files.length > 0) {
+                        const fileSize = this.files[0].size / 1024 / 1024; // in MB
+                        if (fileSize > 5) {
+                            alert('Image size must be less than 5MB');
+                            this.value = '';
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+}

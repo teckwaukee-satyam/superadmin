@@ -1,0 +1,140 @@
+﻿@page
+@model SuperAdminPanel.Pages.AddCompanyModel
+@{
+    ViewData["Title"] = "Add Company Information";
+}
+
+<link rel="stylesheet" href="~/css/AddCompany.css">
+<link rel="stylesheet" href="~/css/AddAdmin.css">
+
+<div class="page-container">
+   
+
+    <main class="page-content">
+        <form id="add-company-form" method="post" class="admin-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-section">
+                <h2 class="section-title">Company Details</h2>
+                <div class="form-grid">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="companyNameInput" class="form-label">Company Name *</label>
+                            <input id="companyNameInput"
+                                   name="name"
+                                   class="form-input"
+                                   placeholder="Enter company name"
+                                   required />
+                            <span class="text-danger field-validation-valid" data-valmsg-for="name" data-valmsg-replace="true"></span>
+                            <p class="form-hint">Required field</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyIndustryInput" class="form-label">Industry</label>
+                            <input id="companyIndustryInput"
+                                   name="industry"
+                                   class="form-input"
+                                   placeholder="e.g. Technology, Finance" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="companyFoundedInput" class="form-label">Founded Year</label>
+                            <input id="companyFoundedInput"
+                                   name="founded"
+                                   type="number"
+                                   min="1900"
+                                   max="@DateTime.Now.Year"
+                                   class="form-input"
+                                   placeholder="YYYY" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyWebsiteInput" class="form-label">Website</label>
+                            <div class="website-input-container">
+                                <span class="website-prefix">https://</span>
+                                <input id="companyWebsiteInput"
+                                       name="website"
+                                       type="url"
+                                       class="form-input"
+                                       placeholder="yourcompany.com" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="section-title">Contact Information</h2>
+                <div class="form-grid">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="companyEmailInput" class="form-label">Email</label>
+                            <input id="companyEmailInput"
+                                   name="email"
+                                   type="email"
+                                   class="form-input"
+                                   placeholder="contact@company.com" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="companyPhoneInput" class="form-label">Phone</label>
+                            <input id="companyPhoneInput"
+                                   name="phone"
+                                   class="form-input"
+                                   placeholder="(123) 456-7890" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="companyAddressInput" class="form-label">Address</label>
+                            <textarea id="companyAddressInput"
+                                      name="address"
+                                      class="form-input"
+                                      rows="3"
+                                      placeholder="Street, City, State, ZIP Code"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" id="cancelAddCompanyInfo">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    Save Company
+                </button>
+            </div>
+        </form>
+    </main>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle cancel button
+            const cancelButton = document.getElementById('cancelAddCompanyInfo');
+            if (cancelButton) {
+                cancelButton.addEventListener('click', function() {
+                    window.location.href = '/Companies'; // Adjust this URL as needed
+                });
+            }
+
+            // Website URL validation
+            const websiteInput = document.getElementById('companyWebsiteInput');
+            if (websiteInput) {
+                websiteInput.addEventListener('blur', function() {
+                    let value = this.value.trim();
+                    if (value && !value.startsWith('http://') && !value.startsWith('https://')) {
+                        value = 'https://' + value;
+                        this.value = value;
+                    }
+                });
+            }
+        });
+    </script>
+}

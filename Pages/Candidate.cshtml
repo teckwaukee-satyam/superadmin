@@ -1,0 +1,40 @@
+﻿@page
+@model SuperAdminPanel.Pages.CandidateModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/Candidate.css">
+
+<div class="container">
+    <h1>Candidate Management</h1>
+    <button id="add-candidate-btn" class="btn btn-primary"> 
+    <a asp-page="/AddCandidate">Add Candidate</a>
+    </button>
+    <table id="candidate-table" class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="candidate-table-body">
+            <!-- Sample data -->
+            <tr>
+                <td>John Doe</td>
+                <td>john@example.com</td>
+                <td>555-123-4567</td>
+                <td>New York</td>
+                <td>
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script src="~/js/candidate.js"></script>

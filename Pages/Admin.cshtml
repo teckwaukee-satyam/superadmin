@@ -1,0 +1,93 @@
+﻿@page
+@model SuperAdminPanel.Pages.AdminModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/Admin.css">
+<body>
+    <section id="admin-page" class="page">
+        <div class="space-y-6">
+            
+
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title">Admin List</h3>
+                        <p class="card-description">
+                            A list of all administrators in your company.
+                        </p>
+                        <button id="add-candidate-btn" class="btn-1 btn-primary">
+                            <a asp-page="/AddAdmin">
+                                Add Admin
+                            </a>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>WhatsApp</th>
+                                    <th>Employee ID</th>
+                                    <th>Designation</th>
+                                    <th>Office Address</th>
+                                    <th>Button</th>
+
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="Admin-table-body">
+                                <tr>
+                                    <td class="font-medium">Jane Smith</td>
+                                    <td>jane@example.com</td>
+                                    <td>+1234567890</td>
+                                    <td>EMP-1001</td>
+                                    <td>Marketing Manager</td>
+                                    <td>123 Main St, New York</td>
+                                    <td>
+                                        <button class="btn btn-icon btn-sm">
+                                           Activate
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-icon btn-sm">
+                                            <i class="ri-edit-line"></i>
+                                        </button>
+                                     </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-medium">John Doe</td>
+                                    <td>john@example.com</td>
+                                    <td>+9876543210</td>
+                                    <td>EMP-1002</td>
+                                    <td>CTO</td>
+                                    <td>456 Tech Ave, San Francisco</td>
+                                     <td>
+                                        <button class="btn btn-icon btn-sm">
+                                         Deactivate
+                                        </button> </td>
+                                    <td>
+                                        <button class="btn btn-icon btn-sm">
+                                            <i class="ri-edit-line"></i>
+                                        </button>
+                                       </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 text-sm text-muted-foreground" id="Admin-count">
+                        Showing 2 administrators
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Admin Dialog -->
+       
+    </section>
+
+   
+</body>

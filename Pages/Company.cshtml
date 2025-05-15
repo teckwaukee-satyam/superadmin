@@ -1,0 +1,61 @@
+﻿@page
+@model SuperAdminPanel.Pages.CompanyModel
+
+<link rel="stylesheet" href="~/css/Company.css">
+
+<section id="company-page" class="page">
+    <div class="space-y-6">
+       
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title">Company Details</h3>
+                        <p class="card-description">
+                            Basic information about your company.
+                        </p>
+                        <button class="btn btn-primary" id="addCompanyInfoBtn">
+                           <a asp-page="/AddCompany" >Add Company Info</a>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="card-content" id="companyDetails">
+                    <div class="space-y-4">
+                        <table class="company-table-horizontal">
+                            <thead>
+                                <tr>
+                                    <th>Company Name</th>
+                                    <th>Industry</th>
+                                    <th>Founded</th>
+                                    <th>Website</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Techwaukee</td>
+                                    <td>Technology</td>
+                                    <td>2016</td>
+                                    <td>www.techwaukee.com</td>
+                                    <td>contact@techwaukee.com</td>
+                                    <td>000000000</td>
+                                    <td>3rd Floor Workfella, Teynampet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                       </div>
+                 </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    
+</section>
+
+<script src="/js/Company.js"></script>
